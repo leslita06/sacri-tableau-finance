@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>SACRI · Facturer et encaisser</title>
+<link rel="icon" href="data:,">
+<link rel="preload" href="assets/Inter.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="assets/style.css?v=20261118b">
+</head>
+<body>
+<div class="demo"><div class="wrap">Données de démonstration · clients et montants fictifs</div></div>
+
+<header class="masthead">
+  <div class="wrap mh">
+    <img src="assets/logo-sacri.png" alt="SACRI" class="logo" width="229" height="114">
+    <div class="mh-txt">
+      <p class="eyebrow">Facturer et encaisser</p>
+      <p class="arrete">Situation au <b>19/11/2026</b></p>
+    </div>
+  </div>
+</header>
+
+<nav class="filters">
+  <div class="wrap">
+    <div class="socs" id="socs" role="tablist" aria-label="Société"></div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section class="intro">
+    <h1 id="titre">Groupe SACRI, cinq sociétés</h1>
+    <p id="phrase" class="lede"></p>
+  </section>
+
+  <section class="kpis" id="kpis"></section>
+
+  <section class="block">
+    <div class="bh"><span class="num">01</span><h2>Par société</h2></div>
+    <div class="card pad0">
+      <div class="tbl-wrap"><table class="tbl socs-tbl" id="t-socs"></table></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="bh"><span class="num">02</span><h2>Impayés et relances</h2></div>
+    <div class="grid2">
+      <div class="card">
+        <p class="cap">Balance âgée, reste dû TTC par ancienneté du retard</p>
+        <div class="ch"><canvas id="c-bal"></canvas></div>
+        <p class="foot" id="bal-foot"></p>
+      </div>
+      <div class="card">
+        <p class="cap">Relances du jour, par niveau</p>
+        <div class="niveaux" id="niveaux"></div>
+        <p class="foot">Messages prêts dans le classeur. Aucun ne part sans l'accord du responsable des relances.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="tbl-head">
+        <p class="cap">Factures non soldées <span class="note" id="t-count"></span></p>
+        <div class="tbl-filters">
+          <label>Niveau
+            <select id="f-niv">
+              <option value="">Tous</option>
+              <option value="1">Niveau 1 · rappel</option>
+              <option value="2">Niveau 2 · relance ferme</option>
+              <option value="3">Niveau 3 · dernier rappel</option>
+              <option value="0">Non échues</option>
+            </select>
+          </label>
+          <label class="srch">Client
+            <input id="f-q" type="search" placeholder="Rechercher" autocomplete="off">
+          </label>
+        </div>
+      </div>
+      <div class="tbl-wrap"><table class="tbl reg" id="t-reg"></table></div>
+      <button class="more" id="more" type="button" hidden></button>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="bh"><span class="num">03</span><h2>Trésorerie sur 13 semaines</h2></div>
+    <div class="grid2 g-treso">
+      <div class="card">
+        <p class="cap" id="cap-treso">Solde de fin de semaine, groupe consolidé</p>
+        <div class="ch ch-l"><canvas id="c-treso"></canvas></div>
+        <p class="foot" id="treso-foot"></p>
+      </div>
+      <div class="card">
+        <p class="cap">Solde de fin de semaine, par société</p>
+        <div class="ch ch-l"><canvas id="c-socs"></canvas></div>
+        <div class="leg-socs" id="leg-socs"></div>
+      </div>
+    </div>
+    <details class="card det">
+      <summary>Détail semaine par semaine <span class="note" id="det-scope"></span></summary>
+      <div class="tbl-wrap"><table class="tbl flux" id="t-flux"></table></div>
+    </details>
+  </section>
+
+  <footer class="pied">
+    <p>Montants en francs CFA. Factures en retard de plus de 90 jours exclues de la prévision de trésorerie. Hors encaissements clients, les flux de trésorerie sont des montants de démonstration.</p>
+  </footer>
+</main>
+
+<script src="assets/chart.umd.min.js?v=4.4.1"></script>
+<script src="assets/app.js?v=20261118b"></script>
+</body>
+</html>
