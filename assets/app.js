@@ -530,7 +530,7 @@ function badges(){var O=OPEN(),n3=O.filter(function(f){return f.niveau===3;}).le
   $("m-enc").textContent=n3||"";$("m-ri").textContent=R||"";$("m-fn").textContent=AN||"";$("m-pl").textContent=tr||"";}
 function render(v){renderFbar();
   if(v==="ensemble"){renderLede();alertBox("alert-ens");renderKpis();renderEnsCharts();renderFil();renderMinis();}
-  else if(v==="encaisser")renderEnc();else if(v==="risque")renderRisque();else if(v==="relances")renderRel();else if(v==="fne")renderFne();else if(v==="tresorerie")renderTreso();else renderAchats();}
+  else if(v==="encaisser")renderEnc();else if(v==="risque")renderRisque();else if(v==="relances")renderRel();else if(v==="fne")renderFne();else if(v==="tresorerie")renderTreso();else renderAchats();;fixDots();}
 function show(v){if(!VNAME[v])v="ensemble";CUR=v;
   [].forEach.call(document.querySelectorAll(".ni[data-v],.tabbar button[data-v],.more .mi[data-v]"),function(b){b.classList.toggle("on",b.dataset.v===v);});
   $("tb-more").classList.toggle("on",v==="tresorerie"||v==="achats");
@@ -539,6 +539,7 @@ function show(v){if(!VNAME[v])v="ensemble";CUR=v;
   if(history.replaceState)history.replaceState(null,"","#"+v);
   render(v);window.scrollTo({top:0});}
 var lastW=innerWidth<700;window.addEventListener("resize",function(){var w=innerWidth<700;if(w!==lastW){lastW=w;render(CUR);}});
+function fixDots(){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),n;while((n=w.nextNode())){if(/[a-zé]\.\.(?!\.)/.test(n.nodeValue))n.nodeValue=n.nodeValue.replace(/([a-zé])\.\.(?!\.)/g,"$1.");}}
 function renderAll(){renderSide();badges();render(CUR);}
 [].forEach.call(document.querySelectorAll(".ni[data-v],.tabbar button[data-v],.more .mi[data-v]"),function(b){b.onclick=function(){$("more").classList.remove("on");show(b.dataset.v);};});
 /* infobulles HTML */
